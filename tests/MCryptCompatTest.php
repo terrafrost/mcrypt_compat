@@ -290,4 +290,16 @@ class MCryptCompatTest extends PHPUnit_Framework_TestCase
         $compat = phpseclib_mcrypt_encrypt('blowfish', $key, $plaintext, 'cbc', $iv);
         $this->assertEquals(bin2hex($mcrypt), bin2hex($compat));
     }
+
+    public function testBlowfishCompat()
+    {
+        $key = str_repeat('z', phpseclib_mcrypt_module_get_algo_key_size('blowfish-compat'));
+        $iv = str_repeat('z', phpseclib_mcrypt_module_get_algo_block_size('blowfish-compat'));
+
+        $plaintext = str_repeat('a', 100);
+
+        $mcrypt = mcrypt_encrypt('blowfish-compat', $key, $plaintext, 'cbc', $iv);
+        $compat = phpseclib_mcrypt_encrypt('blowfish-compat', $key, $plaintext, 'cbc', $iv);
+        $this->assertEquals(bin2hex($mcrypt), bin2hex($compat));
+    }
 }
