@@ -36,7 +36,7 @@
     extra: {
         patches: {
             phpunit/phpunit: {
-                https://gist.github.com/cweagans/48711a05bce931075eff: "https://gist.githubusercontent.com/cweagans/48711a05bce931075eff/raw/9705afa9b989473783461dc9cef89dd0e9cd2c1c/PHPUnit_Extensions_PhptTestCase.patch"
+                "https://gist.github.com/cweagans/48711a05bce931075eff": "https://gist.githubusercontent.com/cweagans/48711a05bce931075eff/raw/9705afa9b989473783461dc9cef89dd0e9cd2c1c/PHPUnit_Extensions_PhptTestCase.patch"
             }
         }
     }
