@@ -1,16 +1,26 @@
 language: php
 
 php:
-  - 5.5.9
-  - 5.5
-  - 5.6
   - 7.0
-  - nightly
+services:
+  - docker
+
+env:
+  - PHP_VERSION=5.6 ENABLE_MCRYPT=0 COVERALLS=0
+  - PHP_VERSION=5.6 ENABLE_MCRYPT=1 COVERALLS=0
+  - PHP_VERSION=7.0 ENABLE_MCRYPT=0 COVERALLS=0
+  - PHP_VERSION=7.0 ENABLE_MCRYPT=1 COVERALLS=0
+  - PHP_VERSION=7.1 ENABLE_MCRYPT=0 COVERALLS=0
+  - PHP_VERSION=7.1 ENABLE_MCRYPT=1 COVERALLS=0
+  - PHP_VERSION=7.0 ENABLE_MCRYPT=0 COVERALLS=1
 
 matrix:
   fast_finish: true
   allow_failures:
-    - php: nightly
+    - env: PHP_VERSION=5.6 ENABLE_MCRYPT=0 COVERALLS=0
+    - env: PHP_VERSION=7.0 ENABLE_MCRYPT=0 COVERALLS=0
+    - env: PHP_VERSION=7.0 ENABLE_MCRYPT=0 COVERALLS=1
+    - env: PHP_VERSION=7.1 ENABLE_MCRYPT=0 COVERALLS=0
 
 install:
   - composer install --prefer-dist

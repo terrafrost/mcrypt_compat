@@ -7,8 +7,59 @@
     bootstrap="vendor/autoload.php"
     >
     <testsuites>
-        <testsuite name="phpseclib Unit Test Suite">
+        <testsuite name="PHP">
             <directory>tests/</directory>
+        </testsuite>
+        <testsuite name="5.6">
+            <directory suffix=".phpt">tests/5.6</directory>
+            <directory suffix=".php">tests/unit</directory>
+        </testsuite>
+        <testsuite name="7.0">
+            <directory suffix=".phpt">tests/7.0</directory>
+            <directory suffix=".php">tests/unit</directory>
+        </testsuite>
+        <testsuite name="7.1">
+            <directory suffix=".phpt">tests/7.1</directory>
+            <directory suffix=".php">tests/unit</directory>
+        </testsuite>
+        <testsuite name="passing">
+            <directory suffix=".phpt">tests/5.6/custom</directory>
+            <file>tests/5.6/blowfish.phpt</file>
+
+            <file>tests/5.6/mcrypt_cbc.phpt</file>
+            <file>tests/5.6/mcrypt_cbc_3des_decrypt.phpt</file>
+            <file>tests/5.6/mcrypt_cbc_3des_encrypt.phpt</file>
+
+            <file>tests/5.6/mcrypt_cfb.phpt</file>
+
+            <file>tests/5.6/mcrypt_create_iv.phpt</file>
+
+            <file>tests/5.6/mcrypt_decrypt_3des_cbc.phpt</file>
+            <file>tests/5.6/mcrypt_decrypt_3des_ecb.phpt</file>
+
+            <file>tests/5.6/mcrypt_ecb.phpt</file>
+
+            <file>tests/5.6/mcrypt_enc_get_algorithms_name.phpt</file>
+            <file>tests/5.6/mcrypt_enc_get_block_size.phpt</file>
+            <file>tests/5.6/mcrypt_enc_get_iv_size.phpt</file>
+            <file>tests/5.6/mcrypt_enc_get_key_size.phpt</file>
+            <file>tests/5.6/mcrypt_enc_get_mode_name.phpt</file>
+            <file>tests/5.6/mcrypt_enc_get_supported_key_sizes.phpt</file>
+            <file>tests/5.6/mcrypt_enc_is_block_algorithm.phpt</file>
+            <file>tests/5.6/mcrypt_enc_is_block_algorithm_mode.phpt</file>
+            <file>tests/5.6/mcrypt_enc_is_block_mode.phpt</file>
+
+            <file>tests/5.6/mcrypt_module_get_algo_block_size.phpt</file>
+            <file>tests/5.6/mcrypt_module_get_algo_key_size.phpt</file>
+            <file>tests/5.6/mcrypt_module_get_supported_key_sizes.phpt</file>
+            <file>tests/5.6/mcrypt_module_is_block_algorithm.phpt</file>
+            <file>tests/5.6/mcrypt_module_is_block_algorithm_mode.phpt</file>
+            <file>tests/5.6/mcrypt_module_is_block_mode.phpt</file>
+
+            <file>tests/5.6/mcrypt_ofb.phpt</file>
+
+            <file>tests/5.6/mcrypt_rijndael128_128BitKey.phpt</file>
+            <file>tests/5.6/mcrypt_rijndael128_256BitKey.phpt</file>
         </testsuite>
     </testsuites>
 
