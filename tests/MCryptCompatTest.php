@@ -743,6 +743,27 @@ class MCryptCompatTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(bin2hex($mcrypt), bin2hex($compat));
     }
 
+    public function testTripleDESECBParameters()
+    {
+        $key_size = phpseclib_mcrypt_get_key_size(MCRYPT_3DES, MCRYPT_MODE_ECB);
+        $this->assertSame(24, $key_size);
+        $iv_size = phpseclib_mcrypt_get_iv_size(MCRYPT_3DES, MCRYPT_MODE_ECB);
+        $this->assertSame(8, $iv_size);
+    }
+
+    public function testECBWithoutIV()
+    {
+        // the ECB mode can't use IVs.
+        $key = '012345678901234567890123';
+        $iv = 'ABCDEFGH';
+        $input = 'Hello__World___!';
+        $encrypted_with_iv = mcrypt_encrypt(MCRYPT_3DES, $key, $input, MCRYPT_MODE_ECB, $iv);
+        $encrypted_without_iv = mcrypt_encrypt(MCRYPT_3DES, $key, $input, MCRYPT_MODE_ECB, NULL);
+        $this->assertNotEmpty($encrypted_with_iv);
+        $this->assertNotEmpty($encrypted_without_iv);
+        $this->assertSame(bin2hex($encrypted_with_iv), bin2hex($encrypted_without_iv));
+    }
+
     public function mcryptModuleNameProvider()
     {
         return array(
