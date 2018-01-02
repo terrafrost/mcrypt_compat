@@ -731,6 +731,34 @@ class MCryptCompatTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(bin2hex($mcrypt), bin2hex($compat));
     }
 
+    public function testStreamIV()
+    {
+        $td = mcrypt_module_open(MCRYPT_TRIPLEDES, '', MCRYPT_MODE_ECB, '');
+        $iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
+    }
+
+    /**
+     * demonstrates how mcrypt deals with IV's when they're not needed
+     *
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testIVOnStream()
+    {
+        $td = mcrypt_module_open(MCRYPT_ARCFOUR, '', MCRYPT_MODE_STREAM, '');
+        mcrypt_generic_init($td, 'xxx', 'x');
+    }
+
+    /**
+     * demonstrates how phpseclib deals with IV's when they're not needed
+     *
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testIVOnStreamPHP()
+    {
+        $td = phpseclib_mcrypt_module_open(MCRYPT_ARCFOUR, '', MCRYPT_MODE_STREAM, '');
+        phpseclib_mcrypt_generic_init($td, 'xxx', 'x');
+    }
+
     public function testCFB()
     {
         $key = str_repeat('z', phpseclib_mcrypt_module_get_algo_key_size('rijndael-128'));
