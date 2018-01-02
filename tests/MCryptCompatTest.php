@@ -759,6 +759,28 @@ class MCryptCompatTest extends \PHPUnit_Framework_TestCase
         phpseclib_mcrypt_generic_init($td, 'xxx', 'x');
     }
 
+    /**
+     * demonstrates how mcrypt deals with mcrypt_generic_init calls with too few parameters
+     *
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testMcryptGenericWithTwoParams()
+    {
+        $td = mcrypt_module_open(MCRYPT_ARCFOUR, '', MCRYPT_MODE_STREAM, '');
+        mcrypt_generic_init($td, 'xxx');
+    }
+
+    /**
+     * demonstrates how mcrypt deals with mcrypt_generic_init calls with too few parameters
+     *
+     * @expectedException PHPUnit_Framework_Error_Warning
+     */
+    public function testMcryptGenericWithTwoParamsPHP()
+    {
+        $td = phpseclib_mcrypt_module_open(MCRYPT_ARCFOUR, '', MCRYPT_MODE_STREAM, '');
+        phpseclib_mcrypt_generic_init($td, 'xxx');
+    }
+
     public function testCFB()
     {
         $key = str_repeat('z', phpseclib_mcrypt_module_get_algo_key_size('rijndael-128'));
